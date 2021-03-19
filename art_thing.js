@@ -10,14 +10,28 @@ function s(p) {
   p.setup = function () {
     p.frameRate(30);
     p.angleMode(p.DEGREES)
+    p.colorMode(p.HSB);
     p.createCanvas(p.windowWidth, p.windowHeight);
+   // p.background(p.random(360), 100, 100);
+
+     //disable default touch events for mobile
+  var el = document.getElementsByTagName("canvas")[0];
+  el.addEventListener("touchstart", pdefault, false);
+  el.addEventListener("touchend", pdefault, false);
+  el.addEventListener("touchcancel", pdefault, false);
+  el.addEventListener("touchleave", pdefault, false);
+  el.addEventListener("touchmove", pdefault, false);
+
   };
 
+  function pdefault(e){
+    e.preventDefault()
+  }
+
   p.draw = function () {
-    p.background(0, 0, 255);
     
     if(p.frameCount%10==0){
-     createShape(w/2,h/2);
+    // createShape(w/2,h/2);
     }
 
     //update and render all shapes 
@@ -46,7 +60,7 @@ function s(p) {
     bgshapes.push(d);
   }
 
-  p.mouseClicked = function(){
+  p.mouseDragged = function(){
     let d = new Shape(p.mouseX, p.mouseY);
     shapes.push(d);
   }
@@ -56,16 +70,19 @@ function s(p) {
     this.cx = _cx;
     this.cy = _cy; 
     this.size = 0; 
-    this.weight = 10;
+    this.weight = 5;
     this.angle = 0;
     this.alpha; 
+    this.color = Math.floor(Math.random()*360);
+    this.life = 100;
+    
 
     this.update = function(){
-      this.size+=5; 
+      this.size+=10; 
       this.angle+=0.1;
-      this.alpha = p.map(this.size, 0, p.min(w, h), 255, 0);
+      this.alpha = p.map(this.size, 0, this.life, 255, 0);
       //remove when beyond screen
-      if(this.size>p.min(w, h)){
+      if(this.size>this.life){
         var index = shapes.indexOf(this);
         if (index > -1) {
           shapes.splice(index, 1);
@@ -77,9 +94,9 @@ function s(p) {
       p.push();
       p.translate(this.cx, this.cy);
      // p.rotate(this.angle);
-      p.stroke(255, 255, 255, this.alpha);
-      p.fill(255, 0, 255, this.alpha);
-    //  p.noFill();
+      p.stroke(this.color, 100, 100, this.alpha);
+    //  p.fill(255, 0, 255, this.alpha);
+      p.noFill();
       p.strokeWeight(this.weight)
       p.beginShape();
       p.vertex(0-this.size/2,0);
