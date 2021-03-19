@@ -9,10 +9,10 @@ function s(p) {
 
   p.setup = function () {
     p.frameRate(30);
-    p.angleMode(p.DEGREES)
     p.colorMode(p.HSB);
     p.createCanvas(p.windowWidth, p.windowHeight);
    // p.background(p.random(360), 100, 100);
+   drawBackground();
 
      //disable default touch events for mobile
   var el = document.getElementsByTagName("canvas")[0];
@@ -21,6 +21,7 @@ function s(p) {
   el.addEventListener("touchcancel", pdefault, false);
   el.addEventListener("touchleave", pdefault, false);
   el.addEventListener("touchmove", pdefault, false);
+
 
   };
 
@@ -53,6 +54,8 @@ function s(p) {
     w = p.windowWidth;
     h = p.windowHeight;
     p.resizeCanvas(p.windowWidth, p.windowHeight);
+    drawBackground();
+
   };
 
   createShape = function(_cx,_cy){
@@ -61,8 +64,11 @@ function s(p) {
   }
 
   p.mouseDragged = function(){
-    let d = new Shape(p.mouseX, p.mouseY);
-    shapes.push(d);
+    shapes.push(new Shape(p.mouseX, p.mouseY));
+  }
+
+  p.mousePressed = function(){
+    shapes.push(new Shape(p.mouseX, p.mouseY));
   }
 
 
@@ -94,21 +100,59 @@ function s(p) {
       p.push();
       p.translate(this.cx, this.cy);
      // p.rotate(this.angle);
+     //  p.fill(255, 0, 255, this.alpha);
       p.stroke(this.color, 100, 100, this.alpha);
-    //  p.fill(255, 0, 255, this.alpha);
       p.noFill();
       p.strokeWeight(this.weight)
-      p.beginShape();
-      p.vertex(0-this.size/2,0);
-      p.vertex(0,this.size);
-      p.vertex(this.size/2,0);
-      p.vertex(0,0-this.size);
-      p.endShape(p.CLOSE);
-
+      drawUniqueShape(this.size);
       p.pop();
     }
   }
 
+  function drawUniqueShape(r){
+
+    /* diamond */
+    
+    p.beginShape();
+    p.vertex(0-r/2,0);
+    p.vertex(0,r);
+    p.vertex(r/2,0);
+    p.vertex(0,0-r);
+    p.endShape(p.CLOSE);
+
+
+  /* polygons */ 
+   // polygon(0,0,r,5);
+
+  }
+
+
+  function polygon(x, y, radius, npoints) {
+    let angle = p.TWO_PI / npoints;
+    p.rotate(3*p.TWO_PI/4);
+    p.beginShape();
+    for (let a = 0; a < p.TWO_PI; a += angle) {
+      let sx = x + p.cos(a) * radius;
+      let sy = y + p.sin(a) * radius;
+      p.vertex(sx, sy);
+    }
+    p.endShape(p.CLOSE);
+  }
+
+
+  function drawBackground(){
+    let _c = Math.floor(p.random(360)); 
+    p.background(_c,5,100);
+    for(let i=10; i<p.max(w,h); i+=50){
+      p.push();
+      p.translate(w/2,h/2);
+      p.stroke(_c, 20, 100, this.alpha);
+      p.noFill();
+      p.strokeWeight(10);
+      drawUniqueShape(i);
+      p.pop();
+    }
+  }
 
   function BGShape(){
     this.cx = 0;
@@ -143,9 +187,6 @@ function s(p) {
       p.pop();
     }
   }
-
-
-
 
 }
 
