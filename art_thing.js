@@ -4,7 +4,7 @@ const s = ( p ) => {
   let h = p.windowHeight;
 
   p.setup = function() {
-  	p.resizeCanvas(p.windowWidth, p.windowHeight);
+  	p.createCanvas(p.windowWidth, p.windowHeight);
   };
 
   p.draw = function() {
@@ -21,5 +21,5 @@ const s = ( p ) => {
 
 };
 
-let myp5 = new p5(s, 'art');
+let myp5 = new p5(s);
 
