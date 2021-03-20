@@ -2,14 +2,14 @@ pragma solidity >=0.7.4;
 
 contract ConfettiVortex {
     address owner;
-    uint256 pieceHash;
+    string pieceHash;
 
     modifier ownerOnly() {
         require(msg.sender == owner);
         _;
     }
 
-    constructor(uint256 _pieceHash) {
+    constructor(string memory _pieceHash) {
         owner = msg.sender;
         pieceHash = _pieceHash;
     }
@@ -22,7 +22,7 @@ contract ConfettiVortex {
         return owner;
     }
 
-    function getPieceHash() public view returns (uint256) {
+    function getPieceHash() public view returns (string memory) {
         return pieceHash;
     }
 }
