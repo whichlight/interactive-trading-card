@@ -2,12 +2,12 @@
 
 ### To run
 1. Install node, npm and ipfs
-2. run `npm i -g ganache-core ganache-cli truffle`
-3. run `ganache-cli` to start local chain
+2. run `npm i -g ganache-core ganache-cli`
+3. run `ganache-cli -q` to start local chain (-q is to quiet logs)
 4. Go to remix and paste contract code in: https://remix.ethereum.org, use "Web3 Provider" environment
-5. Compile contract and copy ABI
+5. Compile contract and copy ABI, paste into `contractABI` variable in web3.js
 6. Add project folder to IPFS, make note of root hash
-7. Deploy contract to local chain, using root hash from IPFS step
+7. Deploy contract to local chain, using root hash from IPFS step in constructor
 8. Make note of contract address
 9. Copy contract address into web3.js file `contractAddress` variable
 10. Open the `index.html` file in your browser
