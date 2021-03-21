@@ -1,11 +1,39 @@
-cv.init().then(() => {
-  cv.getOwner().then(owner => {
-    domUtils.renderOwner(owner)
-  });
+function ready(fn) {
+  if (document.readyState != 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
 
-  cv.isOwner().then(() => {
-    domUtils.showOwnerChangeForm();
-  });
+ready(() => {
+  window.domUtils = new DomUtils();
+  window.cv = new ConfettiVortex();
 
-  cv.getPieceHash().then(console.log);
+  cv.init().then(
+    () => {
+      cv.getOwner().then(owner => {
+        domUtils.renderOwner(owner)
+      });
+
+      cv.isOwner().then(() => {
+        domUtils.showOwnerInfo();
+        domUtils.getOwnerInfo().addEventListener('click', () => {
+          domUtils.hideOwnerInfo()
+        })
+      });
+
+      cv.getPieceHash().then(console.log);
+    },
+    () => {
+      domUtils.showNoWeb3Message();
+      domUtils.getNoWeb3Message().addEventListener('click', () => {
+        domUtils.hideNoWeb3Message();
+      })
+    }
+  )
 })
+
+
+
+
