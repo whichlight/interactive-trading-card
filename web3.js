@@ -1,3 +1,5 @@
+const contractAddress = '0xa2A9495eF32eeE5dF84C94009c47783E4028f58f';
+
 const contractABI = [
   {
     "inputs": [
@@ -53,10 +55,10 @@ const contractABI = [
 
 class ConfettiVortex {
   constructor() {
-    this.contractAddress = '0x6A803BA9Fa810e8cA785F103584C8B929Dcdc7bc';
+    this.contractAddress = contractAddress;
 
     if (typeof window.ethereum !== 'undefined') {
-      console.log('We are in the browser and Metamask is running')
+      console.log('We are in the browser and Metamask is running');
       window.web3 = new Web3(window.ethereum);
     }
   }
@@ -95,7 +97,10 @@ class ConfettiVortex {
 const cv = new ConfettiVortex();
 
 cv.init().then(() => {
-  cv.getOwner().then(console.log)
-  cv.getPieceHash().then(console.log)
-  cv.isOwner().then(console.log)
-});
+  cv.getOwner().then(console.log);
+  cv.getPieceHash().then(console.log);
+  cv.isOwner().then(console.log);
+ })
+
+
+
