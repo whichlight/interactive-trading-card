@@ -72,7 +72,9 @@ class ConfettiVortex {
   }
 
   isOwner() {
-    return Promise.all([this.getAccount(), this.getOwner]).then(([account, owner]) => account === owner);
+    return Promise.all([this.getAccount(), this.getOwner()]).then(
+      ([account, owner]) => account === owner
+    );
   }
 
   getAccount() {
@@ -80,7 +82,7 @@ class ConfettiVortex {
   }
 
   getOwner() {
-    return this.contract.methods.getOwner().call();
+    return this.contract.methods.getOwner().call().then(owner => owner.toLowerCase());
   }
 
   getPieceHash() {
@@ -97,7 +99,6 @@ const cv = new ConfettiVortex();
 cv.init().then(() => {
   cv.getOwner().then(console.log)
   cv.getPieceHash().then(console.log)
-
   const web3 = new Web3('http://127.0.0.1:8545');
   web3.eth.personal.getAccounts().then((accounts) =>{
     let current_account = accounts[0];
@@ -106,5 +107,7 @@ cv.init().then(() => {
     } else {
       console.log("this is not the owner");
     }
-  })
-});
+  }))
+
+  cv.isOwner().then(console.log)
+
