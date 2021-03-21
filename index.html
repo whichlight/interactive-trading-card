@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
   <title>a colorful vortex</title>
   <meta name="description" content="interactive nft by &lt;3 whichlight and noman.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +16,17 @@
 </head>
 
 <body>
-
-
-
-  <div id="logo"><img src="img/eth_logo.png"></div>
+  <div id="owner-section">
+    <img id="logo" src="img/eth_logo.png">
+    <span id="owner-info">
+      <div id="owner"></div>
+      <div id="change-owner-form">
+        <span id="close-button">✕</span>
+        <input type="text" id="new-owner">
+        <button id="submit-button">Change owner</button>
+      </div>
+    </span>
+  </div>
 
   <!-- browsersync stuff -->
   <script id="__bs_script__">//<![CDATA[

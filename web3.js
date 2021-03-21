@@ -98,7 +98,7 @@ cv.init().then(() => {
   cv.getOwner().then(console.log);
   cv.getPieceHash().then(console.log);
   cv.isOwner().then(console.log);
- })
+})
 
 
 

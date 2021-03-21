@@ -16,19 +16,32 @@
     outline: 0;
   }
 
-  #logo{
-    left: 0;
-    bottom: 0;
+  #owner-section {
+    left: 5px;
+    bottom: 15px;
     position: absolute;
     z-index: 10;
+    display: flex;
+    justify-content: space-between;
   }
 
-  #logo img{
+  #owner-section img#logo {
     width: 50px;
-    -webkit-user-drag: none; 
+    -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
      user-drag: none;
      opacity:0.7;
+  }
+
+  #owner-section #close-button {
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: 0;
+  }
+
+  #owner-section #change-owner-form {
+    margin-right: 15px;
   }
