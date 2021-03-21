@@ -1,11 +1,12 @@
 
 class DomUtils {
   constructor() {
-    this.ownerInfo = document.querySelector('#owner-info')
+    this.changeOwnerForm = document.querySelector('#change-owner-form');
     this.input = document.querySelector('#new-owner');
-    this.ownerAddress = document.querySelector('#owner-address')
-    this.submitButton = document.querySelector('#submit-button');
     this.noWeb3Message = document.querySelector('#no-web3');
+    this.ownerAddress = document.querySelector('#owner-address')
+    this.ownerInfo = document.querySelector('#owner-info')
+    this.submitButton = document.querySelector('#submit-button');
   }
 
   renderOwner(owner) {
@@ -42,6 +43,10 @@ class DomUtils {
 
   getInputValue() {
     return this.input.value;
+  }
+
+  showChangeOwnerForm() {
+    return this.changeOwnerForm.classList.remove('hidden')
   }
 }
 
