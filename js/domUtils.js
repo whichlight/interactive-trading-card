@@ -6,7 +6,10 @@ class DomUtils {
     this.noWeb3Message = document.querySelector('#no-web3');
     this.ownerAddress = document.querySelector('#owner-address')
     this.ownerInfo = document.querySelector('#owner-info')
+    this.ownerSection = document.querySelector('#owner-section')
     this.submitButton = document.querySelector('#submit-button');
+    this.logo = document.querySelector('#logo');
+    this.web3Info = document.querySelector('#web3-info');
   }
 
   renderOwner(owner) {
@@ -51,6 +54,20 @@ class DomUtils {
 
   hideChangeOwnerForm() {
     return this.changeOwnerForm.classList.add('hidden')
+  }
+
+  getLogo() {
+    return this.logo;
+  }
+
+  hideWeb3Info() {
+    this.web3Info.classList.add('hidden')
+    this.ownerSection.classList.remove('open')
+  }
+
+  showWeb3Info() {
+    this.web3Info.classList.remove('hidden')
+    this.ownerSection.classList.add('open')
   }
 }
 

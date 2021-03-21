@@ -26,6 +26,10 @@ ready(() => {
         domUtils.renderOwner(owner)
       });
 
+      domUtils.getLogo().addEventListener('click', () => {
+        domUtils.showWeb3Info();
+      })
+
       cv.isOwner().then(isOwner => {
         if (isOwner) {
           domUtils.showChangeOwnerForm();
@@ -33,7 +37,7 @@ ready(() => {
 
         domUtils.showOwnerInfo();
         domUtils.getCloseButton('owner-info').addEventListener('click', () => {
-          domUtils.hideOwnerInfo()
+          domUtils.hideWeb3Info()
         })
       });
 
@@ -50,8 +54,11 @@ ready(() => {
     },
     () => {
       domUtils.showNoWeb3Message();
+      domUtils.getLogo().addEventListener('click', () => {
+        domUtils.showWeb3Info();
+      })
       domUtils.getCloseButton('no-web3').addEventListener('click', () => {
-        domUtils.hideNoWeb3Message();
+        domUtils.hideWeb3Info();
       })
     }
   )
