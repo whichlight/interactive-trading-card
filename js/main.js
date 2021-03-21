@@ -16,7 +16,11 @@ ready(() => {
         domUtils.renderOwner(owner)
       });
 
-      cv.isOwner().then(() => {
+      cv.isOwner().then(isOwner => {
+        if (isOwner) {
+          domUtils.showChangeOwnerForm();
+        }
+
         domUtils.showOwnerInfo();
         domUtils.getCloseButton('owner-info').addEventListener('click', () => {
           domUtils.hideOwnerInfo()
