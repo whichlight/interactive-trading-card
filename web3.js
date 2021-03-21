@@ -1,5 +1,3 @@
-const contractAddress = '0xb3231549e2e0AB1e370aaf804694120abC6E76fd';
-
 const contractABI = [
   {
     "inputs": [
@@ -53,20 +51,48 @@ const contractABI = [
   }
 ];
 
-function connectWeb3() {
-  const web3 = new Web3('http://127.0.0.1:8545');
-  const contract = new web3.eth.Contract(contractABI, contractAddress);
+class ConfettiVortex {
+  constructor() {
+    this.contractAddress = '0x6A803BA9Fa810e8cA785F103584C8B929Dcdc7bc';
 
-  return Promise.all([
-    contract.methods.getOwner().call(),
-    contract.methods.getPieceHash().call()
-  ]).then(([owner, pieceHash]) => ({
-    owner,
-    pieceHash
-  }))
+    if (typeof window.ethereum !== 'undefined') {
+      console.log('We are in the browser and Metamask is running')
+      window.web3 = new Web3(window.ethereum);
+    }
+  }
+
+  init() {
+    return this.getAccount().then(account => {
+      this.contract = window.contract = new web3.eth.Contract(contractABI, this.contractAddress, {
+        from: account
+      });
+    })
+  }
+
+  isOwner() {
+    return Promise.all([this.getAccount(), this.getOwner]).then(([account, owner]) => account === owner);
+  }
+
+  getAccount() {
+    return ethereum.request({ method: 'eth_requestAccounts' }).then(([account]) => account);
+  }
+
+  getOwner() {
+    return this.contract.methods.getOwner().call();
+  }
+
+  getPieceHash() {
+    return this.contract.methods.getPieceHash().call();
+  }
+
+  changeOwner(newOwner) {
+    return this.contract.methods.changeOwner(newOwner).send();
+  }
 }
 
-connectWeb3().then(({ owner, pieceHash }) => {
-  console.log('owner:', owner);
-  console.log('pieceHash:', pieceHash);
-})
+const cv = new ConfettiVortex();
+
+cv.init().then(() => {
+  cv.getOwner().then(console.log)
+  cv.getPieceHash().then(console.log)
+});
