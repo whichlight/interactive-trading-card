@@ -48,6 +48,10 @@ class DomUtils {
   showChangeOwnerForm() {
     return this.changeOwnerForm.classList.remove('hidden')
   }
+
+  hideChangeOwnerForm() {
+    return this.changeOwnerForm.classList.add('hidden')
+  }
 }
 
 
