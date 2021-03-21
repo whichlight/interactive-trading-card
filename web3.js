@@ -70,7 +70,9 @@ class ConfettiVortex {
   }
 
   isOwner() {
-    return Promise.all([this.getAccount(), this.getOwner]).then(([account, owner]) => account === owner);
+    return Promise.all([this.getAccount(), this.getOwner()]).then(
+      ([account, owner]) => account === owner
+    );
   }
 
   getAccount() {
@@ -78,7 +80,7 @@ class ConfettiVortex {
   }
 
   getOwner() {
-    return this.contract.methods.getOwner().call();
+    return this.contract.methods.getOwner().call().then(owner => owner.toLowerCase());
   }
 
   getPieceHash() {
@@ -95,4 +97,5 @@ const cv = new ConfettiVortex();
 cv.init().then(() => {
   cv.getOwner().then(console.log)
   cv.getPieceHash().then(console.log)
+  cv.isOwner().then(console.log)
 });
