@@ -2,7 +2,6 @@
 class DomUtils {
   constructor() {
     this.ownerInfo = document.querySelector('#owner-info')
-    this.closeButton = document.querySelector('#close-button')
     this.input = document.querySelector('#new-owner');
     this.ownerAddress = document.querySelector('#owner-address')
     this.submitButton = document.querySelector('#submit-button');
@@ -29,8 +28,8 @@ class DomUtils {
     this.noWeb3Message.classList.add('hidden');
   }
 
-  getOwnerInfo() {
-    return this.ownerInfo;
+  getCloseButton(wrapperId) {
+    return document.querySelector(`#${wrapperId} #close-button`);
   }
 
   getNoWeb3Message() {
