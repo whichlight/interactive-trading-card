@@ -32,7 +32,8 @@ ready(() => {
               domUtils.renderOwner(inputValue)
             }, error => {
               console.error(error)
-            });
+            }
+          );
         }
       })
     },
