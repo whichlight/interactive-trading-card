@@ -28,12 +28,8 @@ ready(() => {
 
         if (inputValue) {
           cv.changeOwner(inputValue).then(
-            () => {
-              domUtils.renderOwner(inputValue)
-            },
-            error => {
-              console.error(error)
-            }
+            () => domUtils.renderOwner(inputValue),
+            error => console.error(error)
           );
         }
       })
