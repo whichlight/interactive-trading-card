@@ -107,7 +107,8 @@ cv.init().then(() => {
     } else {
       console.log("this is not the owner");
     }
-  }))
+  })
+})
 
   cv.isOwner().then(console.log)
 
