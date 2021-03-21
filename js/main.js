@@ -18,7 +18,7 @@ ready(() => {
 
       cv.isOwner().then(() => {
         domUtils.showOwnerInfo();
-        domUtils.getOwnerInfo().addEventListener('click', () => {
+        domUtils.getCloseButton('owner-info').addEventListener('click', () => {
           domUtils.hideOwnerInfo()
         })
       });
@@ -27,7 +27,7 @@ ready(() => {
     },
     () => {
       domUtils.showNoWeb3Message();
-      domUtils.getNoWeb3Message().addEventListener('click', () => {
+      domUtils.getCloseButton('no-web3').addEventListener('click', () => {
         domUtils.hideNoWeb3Message();
       })
     }
