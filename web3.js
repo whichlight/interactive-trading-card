@@ -99,16 +99,7 @@ const cv = new ConfettiVortex();
 cv.init().then(() => {
   cv.getOwner().then(console.log)
   cv.getPieceHash().then(console.log)
-  const web3 = new Web3('http://127.0.0.1:8545');
-  web3.eth.personal.getAccounts().then((accounts) =>{
-    let current_account = accounts[0];
-    if(current_account==owner){
-      console.log("this is the owner");
-    } else {
-      console.log("this is not the owner");
-    }
-  })
-})
+ })
 
-  cv.isOwner().then(console.log)
+cv.isOwner().then(console.log)
 
