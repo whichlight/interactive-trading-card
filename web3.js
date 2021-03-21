@@ -1,4 +1,4 @@
-const contractAddress = '0xb3231549e2e0AB1e370aaf804694120abC6E76fd';
+const contractAddress = '0xa2A9495eF32eeE5dF84C94009c47783E4028f58f';
 
 const contractABI = [
   {
@@ -69,4 +69,14 @@ function connectWeb3() {
 connectWeb3().then(({ owner, pieceHash }) => {
   console.log('owner:', owner);
   console.log('pieceHash:', pieceHash);
+  
+  const web3 = new Web3('http://127.0.0.1:8545');
+  web3.eth.personal.getAccounts().then((accounts) =>{
+    let current_account = accounts[0];
+    if(current_account==owner){
+      console.log("this is the owner");
+    } else {
+      console.log("this is not the owner");
+    }
+  })
 })
