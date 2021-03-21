@@ -8,7 +8,17 @@ function ready(fn) {
 
 ready(() => {
   window.domUtils = new DomUtils();
-  window.cv = new ConfettiVortex();
+  window.cv = new ConfettiVortex({
+    onAccountChange: () => {
+      cv.isOwner().then(isOwner => {
+        if (isOwner) {
+          domUtils.showChangeOwnerForm()
+        } else {
+          domUtils.hideChangeOwnerForm()
+        }
+      });
+    }
+  });
 
   cv.init().then(
     () => {
