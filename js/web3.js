@@ -37,13 +37,4 @@ class ConfettiVortex {
   }
 }
 
-const cv = new ConfettiVortex();
-
-cv.init().then(() => {
-  cv.getOwner().then(console.log);
-  cv.getPieceHash().then(console.log);
-  cv.isOwner().then(console.log);
-})
-
-
-
+window.cv = new ConfettiVortex();
