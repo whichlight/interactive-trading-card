@@ -9,6 +9,6 @@
 6. Add project folder to IPFS, make note of root hash
 7. Deploy contract to local chain, using root hash from IPFS step in constructor
 8. Make note of contract address
-9. Copy contract address into web3.js file `contractAddress` variable
+9. Update config_update_this.js to config.js and add the contract address in there. 
 10. Open the `index.html` file in your browser
 11. You will have the piece's owner and the piece's hash logged to the console
