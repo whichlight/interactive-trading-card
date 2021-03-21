@@ -30,7 +30,8 @@ ready(() => {
           cv.changeOwner(inputValue).then(
             () => {
               domUtils.renderOwner(inputValue)
-            }, error => {
+            },
+            error => {
               console.error(error)
             }
           );
