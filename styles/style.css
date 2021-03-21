@@ -20,6 +20,15 @@
     outline: 0;
   }
 
+  #close-button {
+    position: absolute;
+    padding: 10px;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   #owner-section {
     left: 5px;
     bottom: 15px;
@@ -37,13 +46,6 @@
     -o-user-drag: none;
      user-drag: none;
      opacity:0.7;
-  }
-
-  #owner-section #close-button {
-    position: absolute;
-    padding: 10px;
-    top: 0;
-    right: 0;
   }
 
   #owner-section #change-owner-form {

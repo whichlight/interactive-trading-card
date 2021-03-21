@@ -21,13 +21,19 @@
 <body>
   <div id="owner-section">
     <img id="logo" src="img/eth_logo.png">
-    <span id="owner-info">
+
+    <span id="owner-info" class="hidden">
       <div id="owner">Owner: <span id="owner-address"></span></div>
-      <div id="change-owner-form" class="hidden">
-        <span id="close-button">✕</span>
+      <div id="change-owner-form">
+        <a id="close-button">✕</a>
         <input type="text" id="new-owner">
         <button id="submit-button">Change owner</button>
       </div>
+    </span>
+
+    <span id="no-web3" class="hidden">
+      <a id="close-button">✕</a>
+      Please install web3 <button>learn more</button>
     </span>
   </div>
 

@@ -7,6 +7,11 @@ class ConfettiVortex {
   }
 
   init() {
+    if (typeof window.ethereum === 'undefined') {
+      console.log('Could not find web3 provider');
+      return Promise.reject();
+    }
+
     return this.getAccount().then(account => {
       this.contract = window.contract = new web3.eth.Contract(contractABI, contractAddress, {
         from: account
@@ -36,5 +41,3 @@ class ConfettiVortex {
     return this.contract.methods.changeOwner(newOwner).send();
   }
 }
-
-window.cv = new ConfettiVortex();
