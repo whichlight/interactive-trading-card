@@ -3,6 +3,9 @@ cv.init().then(() => {
     domUtils.renderOwner(owner)
   });
 
+  cv.isOwner().then(() => {
+    domUtils.showOwnerChangeForm();
+  });
+
   cv.getPieceHash().then(console.log);
-  cv.isOwner().then(console.log);
 })
