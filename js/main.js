@@ -23,7 +23,16 @@ ready(() => {
         })
       });
 
-      cv.getPieceHash().then(console.log);
+      domUtils.getSubmitButton().addEventListener('click', () => {
+        const inputValue = domUtils.getInputValue();
+
+        if (inputValue) {
+          cv.changeOwner(inputValue).then(
+            () => domUtils.renderOwner(inputValue),
+            error => console.error(error)
+          );
+        }
+      })
     },
     () => {
       domUtils.showNoWeb3Message();
