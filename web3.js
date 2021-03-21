@@ -1,4 +1,4 @@
-const contractAddress = '0xa2A9495eF32eeE5dF84C94009c47783E4028f58f';
+const contractAddress = '0x6A803BA9Fa810e8cA785F103584C8B929Dcdc7bc';
 
 const contractABI = [
   {
@@ -100,7 +100,7 @@ cv.init().then(() => {
   cv.getOwner().then(console.log);
   cv.getPieceHash().then(console.log);
   cv.isOwner().then(console.log);
- })
+})
 
 
 
