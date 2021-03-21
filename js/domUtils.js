@@ -35,6 +35,14 @@ class DomUtils {
   getNoWeb3Message() {
     return this.noWeb3Message;
   }
+
+  getSubmitButton() {
+    return this.submitButton;
+  }
+
+  getInputValue() {
+    return this.input.value;
+  }
 }
 
 
