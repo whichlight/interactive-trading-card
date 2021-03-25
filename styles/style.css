@@ -2,13 +2,6 @@
   display: none;
 };
 
-/* remove top and left whitespace */
-body {
-  margin: 0;
-  padding: 0;
-  overflow-y: hidden;
-}
-
 /* remove scrollbars */
 canvas {
   margin: 0 auto;
@@ -60,4 +53,11 @@ canvas:focus {
   -o-user-drag: none;
   user-drag: none;
   opacity:0.7;
+}
+
+/* remove top and left whitespace */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
 }
